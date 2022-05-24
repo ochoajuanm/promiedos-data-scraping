@@ -6,9 +6,11 @@ Este proyecto se encarga de guardar los resultados de los partidos del día ante
 
 ```bash
 .
-├── data_research.ipynb
+├── data_output_example.html
+├── main_deprecated.py
 ├── main.py
 ├── README.md
+├── requirements.txt
 ├── sql
 │   └── create_table.sql
 └── template.env
