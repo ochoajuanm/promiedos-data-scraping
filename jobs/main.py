@@ -1,4 +1,5 @@
-import logging
+#!/usr/bin/env python
+
 import re
 from datetime import date, timedelta
 
@@ -7,8 +8,6 @@ import requests
 from bs4 import BeautifulSoup
 from decouple import config
 from sqlalchemy import create_engine
-
-logger = logging.getLogger("").getChild(__name__)
 
 today = date.today()
 yesterday = today - timedelta(days=1)
@@ -110,4 +109,9 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+        print('Se han ejecutado el proceso ETL exitosamente')
+    except Exception as e:
+        print(f'Ha fallado al menos una tarea en el proceso: {e}')
+
