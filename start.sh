@@ -17,4 +17,4 @@ crontab $CRON_FILE
 echo "Starting cron..."
 crond -f
 
-* * * * * /usr/scheduler/jobs/main.py
+/usr/scheduler/jobs/main.py
