@@ -1,3 +1,4 @@
 #!/usr/bin/env python
 
-print('HOLAAA')
+if __name__ == '__main__':
+    print('HOLAAA')
