@@ -11,16 +11,10 @@ CRON_FILE="crontab.$SCHEDULER_ENVIRONMENT"
 echo "Loading crontab file: $CRON_FILE"
 
 # Load the crontab file
-service cron start
-systemctl start cron
-systemctl status cron
-grep CRON /var/log/syslog
-ls
-crontab $CRON_FILE >> file.txt
+crontab $CRON_FILE
 
 # Start cron
 echo "Starting cron..."
-crond -f >> file1.txt
+crond -f
 
-cat file.txt
-cat file1.txt
+* * * * * /usr/scheduler/jobs/main.py
