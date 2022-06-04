@@ -12,10 +12,6 @@ echo "Loading crontab file: $CRON_FILE"
 
 # Load the crontab file
 crontab $CRON_FILE
-
-# Start cron
-echo "Starting cron..."
-crond -f
 ls
 echo "----"
 ls ~
@@ -32,3 +28,7 @@ ls /etc/anacrontab
 echo "----"
 
 python3 /usr/scheduler/jobs/main.py
+
+# Start cron
+echo "Starting cron..."
+crond -f
