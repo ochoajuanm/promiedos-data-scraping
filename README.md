@@ -6,13 +6,17 @@ Este proyecto se encarga de guardar los resultados de los partidos del día ante
 
 ```bash
 .
+├── crontab.Development
 ├── data_output_example.html
-├── main_deprecated.py
-├── main.py
+├── Dockerfile
+├── jobs
+│   └── main.py
 ├── README.md
 ├── requirements.txt
 ├── sql
-│   └── create_table.sql
+│   ├── create_table.sql
+│   └── delete_duplicates.sql
+├── start.sh
 └── template.env
 
 ```
@@ -22,6 +26,8 @@ Este proyecto se encarga de guardar los resultados de los partidos del día ante
 Se debe usar el gestor de dependencias [pip](https://pip.pypa.io/en/stable/):
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -32,9 +38,11 @@ Luego para configurar un ambiente propio se debe reemplazar los datos propios en
 Al ejecutar el archivo main.py comienza el proceso ETL para concluir con el guardado de datos
 
 ```Uso
-python3 main.py
+python3 jobs/main.py
 ```
 
 ## Visualización de datos
 
 El proyecto actualmente se encuentra en producción y pueden verse los datos almacenados en [Grafana](https://promiedos-dashboard.herokuapp.com/d/OWjDW3unk/dashboard-promiedos?orgId=1)
+
+

@@ -12,7 +12,7 @@ from sqlalchemy import create_engine
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(message)s',
-    datefmt='%Y-%m-%d',
+    datefmt='%d-%m-%Y %H:%M:%S',
     level=logging.INFO,
     filemode="a"
     )
