@@ -16,8 +16,11 @@ systemctl start cron
 systemctl status cron
 grep CRON /var/log/syslog
 ls
-crontab $CRON_FILE
+crontab $CRON_FILE >> file.txt
 
 # Start cron
 echo "Starting cron..."
-crond -f
+crond -f >> file1.txt
+
+cat file.txt
+cat file1.txt
