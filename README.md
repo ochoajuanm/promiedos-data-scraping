@@ -34,3 +34,7 @@ Al ejecutar el archivo main.py comienza el proceso ETL para concluir con el guar
 ```Uso
 python3 main.py
 ```
+
+## Visualización de datos
+
+El proyecto actualmente se encuentra en producción y pueden verse los datos almacenados en [Grafana](https://promiedos-dashboard.herokuapp.com/d/OWjDW3unk/dashboard-promiedos?orgId=1)
