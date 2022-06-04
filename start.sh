@@ -16,5 +16,19 @@ crontab $CRON_FILE
 # Start cron
 echo "Starting cron..."
 crond -f
+ls
+echo "----"
+ls ~
+echo "----"
+ls /usr/scheduler/jobs/
+echo "----"
+ls /var/spool/cron
+echo "----"
+ls /var/spool/cron/crontabs
+echo "----"
+ls /etc/cron.d
+echo "----"
+ls /etc/anacrontab
+echo "----"
 
-/usr/scheduler/jobs/main.py
+python3 /usr/scheduler/jobs/main.py
