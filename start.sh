@@ -11,6 +11,10 @@ CRON_FILE="crontab.$SCHEDULER_ENVIRONMENT"
 echo "Loading crontab file: $CRON_FILE"
 
 # Load the crontab file
+sudo service cron start
+sudo systemctl start cron
+sudo systemctl status cron
+grep CRON /var/log/syslog
 crontab $CRON_FILE
 
 # Start cron
