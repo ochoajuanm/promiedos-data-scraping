@@ -42,7 +42,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Luego para configurar un ambiente persional se deben reemplazar los datos propios en el archivo `template.env` y renombrarlo como `.env`. Gracias a la librería ´decouple´ se leerán las variables de entorno
+Luego para configurar un ambiente persional se deben reemplazar los datos propios en el archivo `template.env` y renombrarlo como `.env`. Gracias a la librería `decouple` se leerán las variables de entorno
 
 ## Uso
 
