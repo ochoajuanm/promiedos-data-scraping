@@ -59,6 +59,7 @@ El `Dockerfile` nos sirve para desplegar nuestra aplicación, está configurado 
 ```bash
 docker build -t scheduler .
 docker run -it scheduler /bin/bash
+source start.sh
 ```
 
 ## Visualización de datos
