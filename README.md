@@ -64,6 +64,6 @@ source start.sh
 
 ## Visualización de datos
 
-El proyecto actualmente se encuentra en producción y pueden verse los datos almacenados en [Grafana](https://promiedos-dashboard.herokuapp.com/d/OWjDW3unk/dashboard-promiedos?orgId=1)
+El proyecto actualmente se encuentra en producción y pueden verse los datos almacenados en [Grafana](https://promiedos-moni-prod-ochoajuanm-jrqhg1.mo1.mogenius.io/d/vk8FujOVz/dashboard-promiedos?orgId=1)
 
 
