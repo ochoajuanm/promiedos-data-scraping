@@ -75,14 +75,26 @@ class PostgreSQLDatabaseManager(SQLDatabaseManager):
             with self.engine.connect() as conn:
                 try:
                     conn.execute(create_database)
+                    logger.info(f"Database created successfully")
                 except ProgrammingError as e:
-                    logger.error(f"Error creating Database {self.db_name}: {e}.", exc_info=sys.exc_info(), stack_info=True)
+                    logger.error(
+                        f"Error creating Database {self.db_name}: {e}.",
+                        exc_info=sys.exc_info(),
+                        stack_info=True,
+                    )
                 try:
                     conn.execute(create_tables)
+                    logger.info(f"Tables created successfully")
                 except ProgrammingError as e:
-                    logger.error(f"Error creating Tables on Schema {self.db_schema}: {e}.", exc_info=sys.exc_info(), stack_info=True)
+                    logger.error(
+                        f"Error creating Tables on Schema {self.db_schema}: {e}.",
+                        exc_info=sys.exc_info(),
+                        stack_info=True,
+                    )
 
-    def _create_engine(self, url: str, connect_args: Dict, isolation_level: str) -> Union[Engine, None]:
+    def _create_engine(
+        self, url: str, connect_args: Dict, isolation_level: str
+    ) -> Union[Engine, None]:
         """Create the SQLAlchemy engine.
 
         Args:
@@ -102,10 +114,16 @@ class PostgreSQLDatabaseManager(SQLDatabaseManager):
                 logger.debug("Connected to PostgreSQL database successfully.")
                 return engine  # type: ignore
         except Exception as e:
-            logger.error(f"Error connecting to PostgreSQL database: {e}.", exc_info=sys.exc_info(), stack_info=True)
+            logger.error(
+                f"Error connecting to PostgreSQL database: {e}.",
+                exc_info=sys.exc_info(),
+                stack_info=True,
+            )
             return None
 
-    def load(self, df: pd.DataFrame, table_name: str, insert_method: Literal['fail', 'replace', 'append']) -> None:
+    def load(
+        self, df: pd.DataFrame, table_name: str, insert_method: Literal['fail', 'replace', 'append']
+    ) -> None:
         """Load data into a specified table in the PostgreSQL database.
 
         Args:
@@ -120,7 +138,13 @@ class PostgreSQLDatabaseManager(SQLDatabaseManager):
             self.connect()
         else:
             with self.engine.connect() as conn:
-                df.to_sql(table_name, schema=str(self.db_schema), con=conn, index=False, if_exists=insert_method)
+                df.to_sql(
+                    table_name,
+                    schema=str(self.db_schema),
+                    con=conn,
+                    index=False,
+                    if_exists=insert_method,
+                )
                 logger.debug(f"Inserted {df.shape[0]} rows to PostgreSQL successfully.")
 
     def close(self):
