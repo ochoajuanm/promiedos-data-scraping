@@ -136,16 +136,16 @@ class PostgreSQLDatabaseManager(SQLDatabaseManager):
         """
         if not self.engine:
             self.connect()
-        else:
-            with self.engine.connect() as conn:
-                df.to_sql(
-                    table_name,
-                    schema=str(self.db_schema),
-                    con=conn,
-                    index=False,
-                    if_exists=insert_method,
-                )
-                logger.debug(f"Inserted {df.shape[0]} rows to PostgreSQL successfully.")
+
+        with self.engine.connect() as conn:
+            df.to_sql(
+                table_name,
+                schema=str(self.db_schema),
+                con=conn,
+                index=False,
+                if_exists=insert_method,
+            )
+            logger.debug(f"Inserted {df.shape[0]} rows to PostgreSQL successfully.")
 
     def close(self):
         """Close the connection to the PostgreSQL database."""
