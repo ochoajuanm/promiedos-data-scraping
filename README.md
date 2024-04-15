@@ -17,18 +17,38 @@ Este proyecto se encarga de realizar scraping con la librería `bs4` (Beautiful 
 
 ```bash
 .
-├── crontab.Development # Schedule de proceso ETL a ejecutarse (jobs/main.py)
-├── data_output_example.html # Un ejemplo de los datos que scrapeamos
-├── Dockerfile 
+├── app
+│   ├── __init__.py
+│   └── src
+│       ├── db_connectors.py
+│       ├── etl.py
+│       ├── exceptions.py
+│       ├── __init__.py
+│       ├── logger.py
+│       ├── models.py
+│       ├── parsers.py
+│       └── scrapers.py
+├── crontab.Development
+├── data_output_example.html
+├── docker-compose-postgres.yaml
+├── Dockerfile
+├── __init__.py
 ├── jobs
-│   └── main.py
+│   ├── main.py # Script a ejecutar
+│   └── migrations.py
+├── logging.conf
+├── logs
+│   └── app.log
+├── poetry.lock
+├── pyproject.toml
 ├── README.md
 ├── requirements.txt
 ├── sql
-│   ├── create_table.sql # Crear la tabla en caso de no existir
-│   └── delete_duplicates.sql
+│   ├── create_database.sql # Crear la base de datos en caso de no existir
+│   ├── create_tables.sql # Crear la tabla en caso de no existir
 ├── start.sh # Definimos entrypoint para desplegar la aplicación
 └── template.env
+
 
 ```
 
@@ -61,9 +81,3 @@ docker build -t scheduler .
 docker run -it scheduler /bin/bash
 source start.sh
 ```
-
-## Visualización de datos
-
-El proyecto actualmente se encuentra en producción y pueden verse los datos almacenados en [Grafana](https://promiedos-moni-prod-ochoajuanm-jrqhg1.mo1.mogenius.io/d/vk8FujOVz/dashboard-promiedos?orgId=1)
-
-

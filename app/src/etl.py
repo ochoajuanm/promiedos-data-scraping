@@ -5,7 +5,11 @@ from abc import ABC, abstractmethod
 from typing import Any, List
 
 from app.src.db_connectors import PostgreSQLDatabaseManager
-from app.src.exceptions import ExtractProcessException, LoadProcessException, TransformProcessException
+from app.src.exceptions import (
+    ExtractProcessException,
+    LoadProcessException,
+    TransformProcessException,
+)
 from app.src.parsers import PromiedosDataParser
 from app.src.scrapers import PromiedosScraper
 
@@ -65,7 +69,9 @@ class PromiedosETL(ETL):
         parser = PromiedosDataParser(days_diff=1)
         if self.extracted_data is not None:
             try:
-                self.transformed_data = parser.transform(self.extracted_data, self.entity, self.period)
+                self.transformed_data = parser.transform(
+                    self.extracted_data, self.entity, self.period
+                )
             except Exception:
                 raise TransformProcessException("Could not transform data from Promiedos")
         else:
@@ -76,7 +82,7 @@ class PromiedosETL(ETL):
         if self.transformed_data is not None:
             try:
                 db_manager = PostgreSQLDatabaseManager()
-                db_manager.load(self.transformed_data, "partidos", "append")
+                db_manager.load(self.transformed_data, "matches", "append")
                 db_manager.close()
             except Exception:
                 raise LoadProcessException("Empty data from Promiedos to transform")
@@ -103,12 +109,28 @@ def run():
         etl.load()
 
         end_time = round(time.time() - init_time, 2)
-        logger.info(f"Promiedos Data Scraping finished successfully. Time elapsed: {end_time} seconds")
+        logger.info(
+            f"Promiedos Data Scraping finished successfully. Time elapsed: {end_time} seconds"
+        )
     except ExtractProcessException as e:
-        logger.error(f"Error extracting Promiedos Data Scraping: {e}", exc_info=sys.exc_info(), stack_info=True)
+        logger.error(
+            f"Error extracting Promiedos Data Scraping: {e}",
+            exc_info=sys.exc_info(),
+            stack_info=True,
+        )
     except TransformProcessException as e:
-        logger.error(f"Error transforming Promiedos Data Scraping: {e}", exc_info=sys.exc_info(), stack_info=True)
+        logger.error(
+            f"Error transforming Promiedos Data Scraping: {e}",
+            exc_info=sys.exc_info(),
+            stack_info=True,
+        )
     except LoadProcessException as e:
-        logger.error(f"Error loading Promiedos Data Scraping: {e}", exc_info=sys.exc_info(), stack_info=True)
+        logger.error(
+            f"Error loading Promiedos Data Scraping: {e}", exc_info=sys.exc_info(), stack_info=True
+        )
     except Exception as e:
-        logger.error(f"Error executing Promiedos Data Scraping: {e}", exc_info=sys.exc_info(), stack_info=True)
+        logger.error(
+            f"Error executing Promiedos Data Scraping: {e}",
+            exc_info=sys.exc_info(),
+            stack_info=True,
+        )
